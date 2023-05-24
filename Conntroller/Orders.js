@@ -8,7 +8,7 @@ const placeOrder = async (req, res) => {
   
       // Find the products by their IDs
       const productIds = products.map((product) => product.productId);
-      const foundProducts = await Post.find({ _id: { $in: productIds } });
+      const foundProducts = await Post.find({ _id:  productIds  });
   
       if (foundProducts.length !== productIds.length) {
         return res.status(404).json({ message: 'One or more products not found' });

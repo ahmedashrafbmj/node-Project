@@ -55,7 +55,7 @@ const ApprovePost =  async (req, res) => {
   };
   
 
-  const GetAllApprovedPost = async (req,res)=>{
+  const GetAllApprovedPostAdmin = async (req,res)=>{
     try{
         const action = req.body.action;
         if(action === 1){
@@ -71,6 +71,17 @@ const ApprovePost =  async (req, res) => {
         res.status(500).json({ message: 'Failed to retrieve approved or reject posts', error: error.message });
       }
   }
+  const GetAllApprovedPost = async (req,res)=>{
+    try{
+        
+            const posts = await Post.find({ isApproved: true }).populate('author');
+            res.json({ posts });
+     
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Failed to retrieve approved or reject posts', error: error.message });
+      }
+  }
 
 
 
@@ -78,7 +89,8 @@ const ApprovePost =  async (req, res) => {
   module.exports = {
     AddProduct,
     ApprovePost,
-    GetAllApprovedPost
+    GetAllApprovedPost,
+    GetAllApprovedPostAdmin
   }
   
 

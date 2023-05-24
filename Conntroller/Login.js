@@ -9,7 +9,7 @@ const generateAdminToken = (userId) => {
   const generateSubadminToken = (userId) => {
     // console.log("generating subadmin token")
 
-    return jwt.sign({ userId, role: 'subadmin' }, process.env.SUBADMIN_SECRET_KEY);
+    return jwt.sign({ userId, role: 'subadmin' }, process.env.SUBADMIN_SECRET_KEY,"1h");
   };
   
   const generateUserToken = (userId) => {
@@ -21,10 +21,10 @@ const generateAdminToken = (userId) => {
 
   const login = async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { email, password } = req.body;
   // console.log(username,"username")
       // Find the user in the database based on the username
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ email });
   
       // Check if the user exists and the password is correct
       if (!user || !user.comparePassword(password)) {
