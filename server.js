@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const signupRoute = require('./Route/index');
+const AllRoute = require('./Route/index');
 // Create an Express app
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
-app.use('/api', signupRoute);
+app.use('/api', AllRoute);
 // Connect to MongoDB
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
