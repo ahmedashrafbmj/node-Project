@@ -7,10 +7,14 @@ require('dotenv').config();
 const AllRoutes = require('./Route/index');
 // Create an Express app
 const app = express();
+const cors = require('cors');
+
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 
 // Routes
 // Define your routes and their corresponding handlers here
