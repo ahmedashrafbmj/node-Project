@@ -18,6 +18,10 @@ const postSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  picture:{
+    type:String,
+    // required:["image is Required"]
+  },
   isApproved: {
     type: Boolean,
     default: false,

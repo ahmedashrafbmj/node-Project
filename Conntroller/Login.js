@@ -22,6 +22,7 @@ const generateAdminToken = (userId) => {
   const login = async (req, res) => {
     try {
       const { email, password } = req.body;
+      console.log(email, password)
   // console.log(username,"username")
       // Find the user in the database based on the username
       const user = await User.findOne({ email });

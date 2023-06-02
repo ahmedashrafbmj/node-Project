@@ -13,12 +13,13 @@ const {placeOrder,approveRejectOrder}  = require("../Conntroller/Orders")
 
 // MiddelWare Import
 const {verifyAdminToken,verifySubadminToken,verifyUserToken} = require("../MiddelWare/TokenVaerification")
+const {upload} = require("../MiddelWare/Multer")
 
 
 // Signup route
 router.post('/signup', signup);
 router.post('/login', login);
-router.post('/AddProduct',verifySubadminToken, AddProduct);
+router.post('/AddProduct',verifySubadminToken,upload, AddProduct);
 router.put('/posts/:postId/approve',verifyAdminToken, ApprovePost);
 router.post('/GetAllApprovedPostAdmin',verifyAdminToken, GetAllApprovedPostAdmin);
 router.get('/GetAllApprovedPost', GetAllApprovedPost);
