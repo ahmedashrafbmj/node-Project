@@ -35,6 +35,7 @@ const generateAdminToken = (userId) => {
       // Generate a separate token based on the user's role
       let token;
       if (user.role === 'admin') {
+        console.log(user.role)
         token = generateAdminToken(user._id);
       } else if (user.role === 'subadmin') {
         token = generateSubadminToken(user._id);
@@ -42,7 +43,7 @@ const generateAdminToken = (userId) => {
         token = generateUserToken(user._id);
       }
   // console.log(token,"token")
-      res.json({ token,user });
+      res.json({success:true , message :"Login successful", token,user });
     } catch (error) {
       res.status(500).json({ message: 'Login failed', error: error.message });
     }

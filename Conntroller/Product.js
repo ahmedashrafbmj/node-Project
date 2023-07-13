@@ -11,14 +11,14 @@ const AddProduct = async (req, res) => {
     //     return res.status(500).json({ message: 'Multer error', error: err.message });
     //   }
 
-      const { title, content, stock } = req.body;
+      const { title, Description, StartDate, EndDate} = req.body;
       const { userId } = req.user; // Assuming you have authenticated the subadmin user
       
       const post = new Post({
         title,
-        content,
-        stock,
-        author: userId,
+        Description,
+        StartDate,
+        EndDate,
         picture: req.file.filename // Access the uploaded file using req.file
       });
 
@@ -84,6 +84,18 @@ const GetAllApprovedPostAdmin = async (req, res) => {
     res.status(500).json({ message: 'Failed to retrieve approved or reject posts', error: error.message });
   }
 }
+const GetAllProducts= async (req, res) => {
+  try {
+    const action = req.body.action;
+    
+      const posts = await Post.find();
+   
+      res.json({ posts });
+  }
+  catch (error) {
+    res.status(500).json({ message: 'Failed to retrieve approved or reject posts', error: error.message });
+  }
+}
 const GetAllApprovedPost = async (req, res) => {
   try {
 
@@ -103,7 +115,8 @@ module.exports = {
   AddProduct,
   ApprovePost,
   GetAllApprovedPost,
-  GetAllApprovedPostAdmin
+  GetAllApprovedPostAdmin,
+  GetAllProducts
 }
 
 

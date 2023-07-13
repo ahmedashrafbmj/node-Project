@@ -5,27 +5,24 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  content: {
+  Description: {
     type: String,
-    required: true,
+    required:[true,"Description is required"],
   },
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
-  stock: {
-    type: Number,
-    required: true,
-  },
+  StartDate:{
+    type:String,
+    required:[true,"StartDate is required"],
+
+},
+EndDate:{
+  type:String,
+  required:[true,"StartDate is required"],
+},
   picture:{
     type:String,
     // required:["image is Required"]
   },
-  isApproved: {
-    type: Boolean,
-    default: false,
-  },
+
 });
 
 const Post = mongoose.model('Post', postSchema);
